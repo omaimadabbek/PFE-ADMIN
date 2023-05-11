@@ -1,0 +1,22 @@
+table {
+    font-family: arial, sans-serif;
+    border-collapse:collapse;
+    width: 80%;
+    margin-top: 20px;
+    margin-left: 130px;
+  }
+  
+  td, th {
+    border: 1px solid black;
+    text-align: center;
+    padding: 10px ;
+  }
+  
+  tr:nth-child(even) {
+    background-color: white;
+  }
+
+  .list-header{
+    text-align: center;
+    text-decoration:underline;
+  }
