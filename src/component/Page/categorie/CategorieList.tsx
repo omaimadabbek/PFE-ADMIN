@@ -1,6 +1,9 @@
 import { Button } from "reactstrap";
 import { ICategorie } from "./Categorie.type";
 import "./CategorieListe.style.css";
+import { MdDeleteForever } from "react-icons/md";
+import { BsFillPencilFill } from "react-icons/bs";
+import Tooltip from "@mui/material/Tooltip";
 
 type Props = {
   list: ICategorie[];
@@ -26,7 +29,8 @@ const CategorieList = (props: Props) => {
   }
   function deletePost(id_categorie: any) {
     fetch(`http://localhost:5000/categorie/${id_categorie}`, {
-      method: "DELETE" });
+      method: "DELETE",
+    });
     setUpdateData(!updateData);
   }
 
@@ -49,30 +53,45 @@ const CategorieList = (props: Props) => {
           return (
             <tr key={categorie.id_categorie}>
               <td>{`${categorie.nom_categorie}`}</td>
-              <td><img src={categorie.image} alt="" style={{maxWidth:"80px"}}/></td>
+              <td>
+                <img
+                  src={categorie.image}
+                  alt=""
+                  style={{ maxWidth: "80px" }}
+                />
+              </td>
               {/* <td>{categorie.image}</td> */}
               <td>
                 <div className="d-flex justify-content-center">
-                  <div style={{ marginRight: "10px" }}>
-                    <Button
-                      color="primary"
+                  <Tooltip title="Modifier Categorie" arrow>
+                    <div
+                      style={{
+                        marginRight: "10px",
+                        cursor: "pointer",
+                        fontSize: "x-large",
+                        color: "orange",
+                      }}
                       onClick={() => {
                         onUpdateCat(categorie);
                       }}
                     >
-                      Modifier
-                    </Button>
-                  </div>
-                  <div>
-                    <Button
-                      color="primary"
+                      <BsFillPencilFill />
+                    </div>
+                  </Tooltip>
+                  <Tooltip title="Supprimer Categorie" arrow>
+                    <div
+                      style={{
+                        cursor: "pointer",
+                        fontSize: "x-large",
+                        color: "red",
+                      }}
                       onClick={() => {
                         deletePost(categorie.id_categorie);
                       }}
                     >
-                      Supprimer
-                    </Button>
-                  </div>
+                      <MdDeleteForever />
+                    </div>
+                  </Tooltip>
                 </div>
               </td>
             </tr>

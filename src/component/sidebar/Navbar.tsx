@@ -1,7 +1,6 @@
 import { Outlet } from "react-router-dom";
 import SideBar from "./Sidebar";
 
-
 export default function Navbar() {
   return (
     <div
@@ -16,13 +15,16 @@ export default function Navbar() {
       `,
         backgroundColor: "#f3f3f9",
         height: "100vh",
-        overflow: "hidden"
+        overflow: "hidden",
       }}
     >
       <div style={{ gridArea: "sidebar", minHeight: "100vh" }}>
-     
-      <img src="logo.png" alt="" style={{maxWidth:"250px"}}/>
-     
+        <img
+          src="logo-removebg-preview.png"
+          alt=""
+          style={{ maxWidth: "250px" }}
+        />
+
         <SideBar />
       </div>
 
@@ -30,7 +32,7 @@ export default function Navbar() {
         style={{
           gridArea: "header",
           backgroundColor: "#ffffff",
-          textAlign: "center"
+          textAlign: "center",
         }}
       >
         <div className="navbar-header">header</div>
@@ -43,7 +45,7 @@ export default function Navbar() {
           width: "100%",
           padding: "12px 5px",
           display: "grid",
-          gridTemplateRows: "auto auto  1fr"
+          gridTemplateRows: "auto auto  1fr",
         }}
       >
         <Outlet />
@@ -52,7 +54,7 @@ export default function Navbar() {
         style={{
           backgroundColor: " #ffffff",
           marginTop: "10px",
-          gridArea: "footer"
+          gridArea: "footer",
         }}
       >
         <div className="d-flex col-sm pb-md-row footer__clz"></div>{" "}

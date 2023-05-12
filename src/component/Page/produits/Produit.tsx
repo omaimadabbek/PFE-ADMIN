@@ -4,6 +4,7 @@ import { IProduit  } from "./Produit.type";
 import ProduitList from "./ProduitList";
 import "./HomeP.style.css";
 import ModalProduit from "./ModalProduit";
+ import { SiAddthis } from "react-icons/si";
 
 
 const Produit = () =>{
@@ -102,59 +103,63 @@ const deleteProduit =(data: IProduit) =>{
     };
    
    return (
-        <>
-        <article className="article-header">
-            <header>
-                <h1>Restaurant Dabbek</h1>
-            </header>
-        </article>
+     <>
+       <article className="article-header">
+         <header>
+           <h1>Restaurant Dabbek</h1>
+         </header>
+       </article>
 
-        <section className="section-content" >
-        
-          <>
-            <Button
-                color="primary"
-                onClick={()=>{handleAddProduit()}}
-                className="add-produit-btn"
-                
-            >
-                Ajouter Produit
-            </Button>
-                       
-            <ProduitList 
-              list={produitList} 
-              setProduitSelected={setProduitSelected} 
-              modal={modal} 
-              setModal={setModal}
-              setUpdateData={setUpdateData} 
-              updateData={updateData}/>
-               </>
-              
-              </section>
-        <ModalProduit 
-        modal={modal}
-         setModal={setModal} 
+       <section className="section-content">
+         <>
+           <div
+             style={{
+               marginRight: "10px",
+               cursor: "pointer",
+               fontSize: "x-large",
+               color:"blue"
+             }}
+             onClick={() => {
+               handleAddProduit();
+             }}
+             className="add-produit-btn"
+           >
+             <SiAddthis />
+           </div>
+
+           <ProduitList
+             list={produitList}
+             setProduitSelected={setProduitSelected}
+             modal={modal}
+             setModal={setModal}
+             setUpdateData={setUpdateData}
+             updateData={updateData}
+           />
+         </>
+       </section>
+       <ModalProduit
+         modal={modal}
+         setModal={setModal}
          id_categorie={id_categorie}
          nom={nom}
          prix={prix}
          image={image}
          repture_de_stock={repture_de_stock}
          description={description}
-        type={type}
-        
-        setCategorie={setCategorie}
-        setNomProduit={setNomProduit}
-        setPrix={setPrix}
-        setImage={setImage}
-        setReptureDeStock={setReptureDeStock}
-        setDescription={setDescription}
-        idSelected={idSelected}
-        listeCategorie={listeCategorie}
-        setUpdateData={setUpdateData}
-        updateData={updateData}/> 
-     
-      </>
-    );
+         type={type}
+         setCategorie={setCategorie}
+         setNomProduit={setNomProduit}
+         setPrix={setPrix}
+         setImage={setImage}
+         setReptureDeStock={setReptureDeStock}
+         setDescription={setDescription}
+         idSelected={idSelected}
+         listeCategorie={listeCategorie}
+         setUpdateData={setUpdateData}
+         updateData={updateData}
+       />
+     </>
+   );
 };
 
 export default Produit;

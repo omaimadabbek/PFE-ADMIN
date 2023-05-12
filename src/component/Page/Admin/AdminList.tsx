@@ -1,6 +1,8 @@
 import { Button } from "reactstrap";
 import { IAdmin } from "./Admin.type";
 import "./AdminListe.style.css";
+import { FaUserEdit } from "react-icons/fa";
+import { HiUserRemove } from "react-icons/hi";
 
 type Props = {
   list: IAdmin[];
@@ -11,14 +13,8 @@ type Props = {
   updateData: boolean;
 };
 const AdminList = (props: Props) => {
-  const { 
-    list,
-     setAdminSelected, 
-     setModal, 
-     modal ,
-     setUpdateData,
-     updateData,
-    } = props;
+  const { list, setAdminSelected, setModal, modal, setUpdateData, updateData } =
+    props;
 
   function onUpdateAdmin(admin: any) {
     setAdminSelected(admin);
@@ -26,9 +22,10 @@ const AdminList = (props: Props) => {
   }
   function deletePost(admin_id: any) {
     fetch(`http://localhost:5000/Admin/${admin_id}`, {
-      method: "DELETE" });
-      setUpdateData(!updateData);
-   }
+      method: "DELETE",
+    });
+    setUpdateData(!updateData);
+  }
 
   return (
     <div>
@@ -55,26 +52,31 @@ const AdminList = (props: Props) => {
               <td>{admin.email}</td>
               <td>
                 <div className="d-flex justify-content-center">
-                  <div style={{ marginRight: "10px" }}>
-                    <Button
-                      color="primary"
-                      onClick={() => {
-                        onUpdateAdmin(admin);
-                      }}
-                    >
-                      Modifier
-                    </Button>
+                  <div
+                    style={{
+                      marginRight: "10px",
+                      cursor: "pointer",
+                      fontSize: "x-large",
+                      color:"orange"
+                    }}
+                    onClick={() => {
+                      onUpdateAdmin(admin);
+                    }}
+                  >
+                    <FaUserEdit />
                   </div>
 
-                  <div>
-                    <Button
-                      color="primary"
-                      onClick={() => {
-                        deletePost(admin.admin_id);
-                      }}
-                    >
-                      Supprimer
-                    </Button>
+                  <div
+                    style={{
+                      cursor: "pointer",
+                      fontSize: "x-large",
+                      color: "red",
+                    }}
+                    onClick={() => {
+                      deletePost(admin.admin_id);
+                    }}
+                  >
+                    <HiUserRemove />
                   </div>
                 </div>
               </td>

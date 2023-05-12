@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
-import { Button } from "reactstrap";
 import { ICategorie } from "./Categorie.type";
 import CategorieList from "./CategorieList";
 import ModalCategorie from "./ModalCategorie";
+import { SiAddthis } from "react-icons/si";
+import Tooltip from "@mui/material/Tooltip";
 import "./Home.style.css";
 
 const Categorie = () => {
@@ -14,7 +15,7 @@ const Categorie = () => {
   const [idSelected, setIdSelected] = useState(0);
   const [modal, setModal] = useState(false);
   const [updateData, setUpdateData] = useState(false);
-//alert("gg")
+  //alert("gg")
   async function homeAdd() {
     fetch("http://localhost:5000/categorie")
       .then(async (response) => {
@@ -24,7 +25,7 @@ const Categorie = () => {
       .catch((error) => {
         console.error("There was an error!", error);
       });
-      setUpdateData(!updateData);
+    setUpdateData(!updateData);
   }
 
   function getCategorie() {
@@ -32,11 +33,14 @@ const Categorie = () => {
       .then(async (response) => {
         const data = await response.json();
         setCategorieList(data);
-        let result:any=[]
-           data.forEach((element: any, index: any) => {
-       result.push({ value: element.id_categorie, label: element.nom_categorie });
-     });
-    setlisteClients(result);
+        let result: any = [];
+        data.forEach((element: any, index: any) => {
+          result.push({
+            value: element.id_categorie,
+            label: element.nom_categorie,
+          });
+        });
+        setlisteClients(result);
       })
       .catch((error) => {
         console.error("There was an error!", error);
@@ -46,25 +50,25 @@ const Categorie = () => {
   useEffect(() => {
     getCategorie();
   }, [updateData]);
-  
+
   useEffect(() => {
     setNom(categorieSelected?.nom_categorie);
     setImage(categorieSelected?.image);
     setIdSelected(categorieSelected?.id_categorie);
   }, [categorieSelected]);
 
-  const _setCategorieList = (list: ICategorie[]) => {
-    setCategorieList(list);
-    window.localStorage.setItem("CategorieList", JSON.stringify(list));
-  };
+  // const _setCategorieList = (list: ICategorie[]) => {
+  //   setCategorieList(list);
+  //   window.localStorage.setItem("CategorieList", JSON.stringify(list));
+  // };
 
-  const deleteCategorie = (data: ICategorie) => {
-    const indexToDelete = categorieList.indexOf(data);
-    const tempList = [...categorieList];
+  // const deleteCategorie = (data: ICategorie) => {
+  //   const indexToDelete = categorieList.indexOf(data);
+  //   const tempList = [...categorieList];
 
-    tempList.splice(indexToDelete, 1);
-    _setCategorieList(tempList);
-  };
+  //   tempList.splice(indexToDelete, 1);
+  //   _setCategorieList(tempList);
+  // };
   const handleAddCategorie = () => {
     setType("add");
     setModal(!modal);
@@ -72,7 +76,6 @@ const Categorie = () => {
 
   return (
     <>
-   
       <article className="article-header">
         <header>
           <h1>Restaurant Dabbek</h1>
@@ -81,16 +84,22 @@ const Categorie = () => {
 
       <section className="section-content">
         <>
-          <Button
-            color="primary"
-            onClick={() => {
-              handleAddCategorie();
-            }}
-            className="add-categorie-btn"
-          >
-            Ajouter Categorie
-          </Button>
-
+          <Tooltip title="Ajouter Categorie" arrow>
+            <div
+              style={{
+                marginRight: "10px",
+                cursor: "pointer",
+                fontSize: "x-large",
+                color: "blue",
+              }}
+              onClick={() => {
+                handleAddCategorie();
+              }}
+              className="add-categorie-btn"
+            >
+              <SiAddthis />
+            </div>
+          </Tooltip>
           <CategorieList
             list={categorieList}
             setCategorieSelected={setCategorieSelected}
@@ -111,8 +120,7 @@ const Categorie = () => {
         setImage={setImage}
         idSelected={idSelected}
         setUpdateData={setUpdateData}
-            updateData={updateData}
-
+        updateData={updateData}
       />
     </>
   );
@@ -122,4 +130,3 @@ export default Categorie;
 function setlisteClients(result: any) {
   throw new Error("Function not implemented.");
 }
-
