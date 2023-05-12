@@ -7,7 +7,7 @@ import "./HomeA.style.css";
 const Admin = () => {
   const [adminList, setAdminList] = useState([] as IAdmin[]);
   const [adminSelected, setAdminSelected] = useState<any>();
-  const [type, setType] = useState("");
+  const [type] = useState("");
   const [Nom, setNom] = useState("");
   const [Prenom, setPrenom] = useState("");
   const [Email, setEmail] = useState("");
@@ -15,20 +15,10 @@ const Admin = () => {
   const [modal, setModal] = useState(false);
   const [updateData, setUpdateData] = useState(false);
 
-  async function homeAdd() {
-    fetch("http://localhost:5000/Admin")
-      .then(async (response) => {
-        const data = await response.json();
-        console.log(data);
-        setAdminList(data);
-      })
-      .catch((error) => {
-        console.error("There was an error!", error);
-      });
-  }
+ 
 
   function getAdmin() {
-    fetch("http://localhost:5000/Admin")
+    fetch(`${process.env.REACT_APP_API_URL}/Admin`)
       .then(async (response) => {
         const data = await response.json();
         console.log(data);
@@ -49,22 +39,8 @@ const Admin = () => {
     setIdSelected(adminSelected?.admin_id);
   }, [adminSelected]);
 
-  const _setAdminList = (list: IAdmin[]) => {
-    setAdminList(list);
-    window.localStorage.setItem("AdminList", JSON.stringify(list));
-  };
 
-  const deleteAdmin = (data: IAdmin) => {
-    const indexToDelete = adminList.indexOf(data);
-    const tempList = [...adminList];
 
-    tempList.splice(indexToDelete, 1);
-    _setAdminList(tempList);
-  };
-  const handleAddCategorie = () => {
-    setType("add");
-    setModal(!modal);
-  };
 
   return (
     <>

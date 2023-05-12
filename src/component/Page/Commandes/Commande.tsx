@@ -5,48 +5,30 @@ import "./HomeC.style.css";
 import ModalCommandes from "./ModalCommande";
 
 
-type Props = {
-  setUpdateData: React.Dispatch<React.SetStateAction<boolean>>
-  updateData:boolean
-  DetailList:string
-  setDetailList:React.Dispatch<React.SetStateAction<string>>
-};
+
 const Commande = () => {
   const [commandeList, setCommandeList] = useState([] as ICommande[]);
   const [commandeSelected, setCommandeSelected] = useState<any>();
-  const [type, setType] = useState("");
-  const [TotalCommande, setTotalCommande] = useState("");
-  const [date_cmd, setDateCmd] = useState("");
-  const [etat_commande, setEtat] = useState("");
-  const [Client, setIdClient] = useState("");
-  const [MDV, setMdv] = useState("");
-  const [Adresse, setAdresse] = useState("");
-  const [idSelected, setIdSelected] = useState(0);
+  const [, setTotalCommande] = useState("");
+  const [, setDateCmd] = useState("");
+  const [, setEtat] = useState("");
+  const [, setIdClient] = useState("");
+  const [, setMdv] = useState("");
+  const [, setAdresse] = useState("");
+  const [, setIdSelected] = useState(0);
   const [modal, setModal] = useState(false);
   const [updateData, setUpdateData] = useState(false);
   const[DetailList,setDetailList]=useState<any>();
 
-  async function CommandeAdd() {
-    fetch("http://localhost:5000/commandes")
-      .then(async (response) => {
-        const data = await response.json();
-        console.log(data);
-        setCommandeList(data);
-      })
-      .catch((error) => {
-        console.error("There was an error!", error);
-      });
-     
-  }
+ 
 
   function getCommande() {
-    fetch("http://localhost:5000/commandes")
+    fetch(`${process.env.REACT_APP_API_URL}/commandes`)
       .then(async (response) => {
         // TO_CHAR(Date, 'YYYY-MM-DD')  as Date;
         const data = await response.json();
         console.log(data);
         setCommandeList(data);
-        
       })
       .catch((error) => {
         console.error("There was an error!", error);
@@ -69,10 +51,7 @@ const Commande = () => {
     setIdSelected(commandeSelected?.id_commandes);
   }, [commandeSelected]);
 
-  const _setCommandeList = (list: ICommande[]) => {
-    setCommandeList(list);
-    window.localStorage.setItem("CategorieList", JSON.stringify(list));
-  };
+ 
 
 
 

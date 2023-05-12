@@ -60,7 +60,7 @@ const ModalProduit = ({
   const [imageProduit, setImage] = useState("");
   async function AddPrd(dataImage: any) {
     console.log("add")
-    fetch("http://localhost:5000/produits", {
+    fetch(`${process.env.REACT_APP_API_URL}/produits`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -83,7 +83,7 @@ const ModalProduit = ({
   async function updateProduit(urlImage:any) {
     console.log("update")
  
-    fetch(`http://localhost:5000/produits/${idSelected}`, {
+    fetch(`${process.env.REACT_APP_API_URL}/produits/${idSelected}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -112,7 +112,7 @@ const ModalProduit = ({
       for (const i of Object.keys(img)) {
         formData.append("imgCollection", img[i as unknown as number]);
       }
-      await fetch(`http://localhost:5000/uploadImage`, {
+      await fetch(`${process.env.REACT_APP_API_URL}/uploadImage`, {
         body: formData,
         method: "POST",
       })
@@ -131,13 +131,13 @@ const ModalProduit = ({
       for (const i of Object.keys(img)) {
         formData.append("imgCollection", img[i as unknown as number]);
       }
-      await fetch(`http://localhost:5000/uploadImage`, {
+      await fetch(`${process.env.REACT_APP_API_URL}/uploadImage`, {
         body: formData,
         method: "POST",
       })
         .then((response) => response.json())
         .then((data: any) => {
-          updateProduit(data)
+          updateProduit(data);
         });
     } else {
       updateProduit(image)

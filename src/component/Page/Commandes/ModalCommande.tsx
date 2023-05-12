@@ -1,10 +1,6 @@
-import { table } from "console";
+
 import {
   Button,
-  Col,
-  FormGroup,
-  Input,
-  Label,
   Modal,
   ModalBody,
   ModalFooter,
@@ -78,6 +74,4 @@ const ModalCommandes = ({ modal, DetailList, setModal }: ModalType) => {
 };
 export default ModalCommandes;
 
-function setDetailSelected() {
-  throw new Error("Function not implemented.");
-}
+

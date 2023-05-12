@@ -1,4 +1,3 @@
-import { Button } from "reactstrap";
 import { ICategorie } from "./Categorie.type";
 import "./CategorieListe.style.css";
 import { MdDeleteForever } from "react-icons/md";
@@ -28,7 +27,7 @@ const CategorieList = (props: Props) => {
     setModal(!modal);
   }
   function deletePost(id_categorie: any) {
-    fetch(`http://localhost:5000/categorie/${id_categorie}`, {
+    fetch(`${process.env.REACT_APP_API_URL}/categorie/${id_categorie}`, {
       method: "DELETE",
     });
     setUpdateData(!updateData);

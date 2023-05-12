@@ -39,7 +39,7 @@ const ModalCategorie = ({
 }: ModalType) => {
   const [imageCategorie, setImage] = useState("");
   async function AddCatt(dataImage:any) {
-    fetch("http://localhost:5000/categorie", {
+    fetch(`${process.env.REACT_APP_API_URL}/categorie`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -55,7 +55,7 @@ const ModalCategorie = ({
     setUpdateData(!updateData);
   }
   async function updateCategorie(urlImage:any) {
-    fetch(`http://localhost:5000/categorie/${idSelected}`, {
+    fetch(`${process.env.REACT_APP_API_URL}/categorie/${idSelected}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -80,7 +80,7 @@ const ModalCategorie = ({
       for (const i of Object.keys(img)) {
         formData.append('imgCollection', img[i as unknown as number]);
       }
-      await fetch(`http://localhost:5000/uploadImage`, {
+      await fetch(`${process.env.REACT_APP_API_URL}/uploadImage`, {
         body: formData,
         method: 'POST'
       })
@@ -99,7 +99,7 @@ const ModalCategorie = ({
       for (const i of Object.keys(img)) {
         formData.append("imgCollection", img[i as unknown as number]);
       }
-      await fetch(`http://localhost:5000/uploadImage`, {
+      await fetch(`${process.env.REACT_APP_API_URL}/uploadImage`, {
         body: formData,
         method: "POST",
       })

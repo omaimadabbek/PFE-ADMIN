@@ -1,4 +1,4 @@
-import { Button } from "reactstrap";
+
 import "./ProduitListe.style.css";
 import { IProduit } from "./Produit.type";
 import { MdDeleteForever } from "react-icons/md";
@@ -27,7 +27,7 @@ const ProduitList = (props: Props) => {
     setModal(!modal);
   }
   function deletePost(id_produit: any) {
-    fetch(`http://localhost:5000/produits/${id_produit}`, {
+    fetch(`${process.env.REACT_APP_API_URL}/produits/${id_produit}`, {
       method: "DELETE",
     });
     setUpdateData(!updateData);

@@ -1,4 +1,3 @@
-import { Button } from "reactstrap";
 import { IAdmin } from "./Admin.type";
 import "./AdminListe.style.css";
 import { FaUserEdit } from "react-icons/fa";
@@ -21,7 +20,7 @@ const AdminList = (props: Props) => {
     setModal(!modal);
   }
   function deletePost(admin_id: any) {
-    fetch(`http://localhost:5000/Admin/${admin_id}`, {
+    fetch(`${process.env.REACT_APP_API_URL}/Admin/${admin_id}`, {
       method: "DELETE",
     });
     setUpdateData(!updateData);

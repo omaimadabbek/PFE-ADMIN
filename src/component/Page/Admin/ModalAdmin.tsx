@@ -25,25 +25,23 @@ type ModalType={
   idSelected
 }:ModalType)=>{
   async function AddAdmin (){
-    fetch('http://localhost:5000/Admin', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+    fetch(`${process.env.REACT_APP_API_URL}/Admin`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         nom: nom,
         prenom: prenom,
-        email:email
-       
+        email: email,
+      }),
     })
-  })
-        .then((response) => response.json())
-        .catch((error) => {
-        
-          console.error('There was an error!', error);
+      .then((response) => response.json())
+      .catch((error) => {
+        console.error("There was an error!", error);
       });
       setModal(!modal)
   }
   async function updateAdmin (){
-    fetch(`http://localhost:5000/Admin/${idSelected}`, {
+    fetch(`${process.env.REACT_APP_API_URL}/Admin/${idSelected}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

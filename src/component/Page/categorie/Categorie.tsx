@@ -15,21 +15,11 @@ const Categorie = () => {
   const [idSelected, setIdSelected] = useState(0);
   const [modal, setModal] = useState(false);
   const [updateData, setUpdateData] = useState(false);
-  //alert("gg")
-  async function homeAdd() {
-    fetch("http://localhost:5000/categorie")
-      .then(async (response) => {
-        const data = await response.json();
-        setCategorieList(data);
-      })
-      .catch((error) => {
-        console.error("There was an error!", error);
-      });
-    setUpdateData(!updateData);
-  }
+
+
 
   function getCategorie() {
-    fetch("http://localhost:5000/categorie")
+    fetch(`${process.env.REACT_APP_API_URL}/categorie`)
       .then(async (response) => {
         const data = await response.json();
         setCategorieList(data);
@@ -57,18 +47,7 @@ const Categorie = () => {
     setIdSelected(categorieSelected?.id_categorie);
   }, [categorieSelected]);
 
-  // const _setCategorieList = (list: ICategorie[]) => {
-  //   setCategorieList(list);
-  //   window.localStorage.setItem("CategorieList", JSON.stringify(list));
-  // };
 
-  // const deleteCategorie = (data: ICategorie) => {
-  //   const indexToDelete = categorieList.indexOf(data);
-  //   const tempList = [...categorieList];
-
-  //   tempList.splice(indexToDelete, 1);
-  //   _setCategorieList(tempList);
-  // };
   const handleAddCategorie = () => {
     setType("add");
     setModal(!modal);

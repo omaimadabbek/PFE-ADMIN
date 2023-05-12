@@ -4,7 +4,7 @@ import "./CommandeListe.style.css";
 import { FcApproval } from "react-icons/fc";
 import { FcCancel } from "react-icons/fc";
 import { RxTimer } from "react-icons/rx";
-import { useEffect} from "react";
+
 
 type Props = {
   list: ICommande[];
@@ -28,14 +28,13 @@ const CommandeList = (props: Props) => {
     updateData,
     modal,
     setModal,
-    DetailList,
     setDetailList
   } = props;
 
   async function onUpdateCmd(id_commandes: number, etat_commande: string) {
     setCommandeSelected(id_commandes);
 
-    fetch(`http://localhost:5000/commandes/${id_commandes}`, {
+    fetch(`${process.env.REACT_APP_API_URL}/commandes/${id_commandes}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ etat_commande }),
@@ -50,7 +49,7 @@ const CommandeList = (props: Props) => {
   };
   function getDetail(id_commandes:any){
 
-    fetch(`http://localhost:5000/detail_commandes/${id_commandes}`)
+    fetch(`${process.env.REACT_APP_API_URL}/detail_commandes/${id_commandes}`)
           .then(async response => {
               const data = await response.json()
               setDetailList(data)

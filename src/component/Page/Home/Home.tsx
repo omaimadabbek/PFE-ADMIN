@@ -16,7 +16,7 @@ export default function Home() {
   const [modal, setModal] = useState(false);
 
   async function AddAdmin() {
-    fetch("http://localhost:5000/Admin", {
+    fetch(`${process.env.REACT_APP_API_URL}/Admin`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -49,7 +49,7 @@ export default function Home() {
   // ***ajouter condtion pour faire sweetalert2*/
 
   function getAdmin() {
-    fetch(`http://localhost:5000/Admin/${email}/${mdp}`)
+    fetch(`${process.env.REACT_APP_API_URL}/Admin/${email}/${mdp}`)
       .then((res) => res.json())
       .then((result) => {
         let data = result;
