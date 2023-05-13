@@ -65,6 +65,7 @@ export default function Home() {
           console.log("JSON", JSON.parse(newObject));
 
           navigate("/Categorie");
+          window.location.reload();
         } else {
           //***pass ou email incorrect donc affiche swalalerte d'une erreur*/
           Swal.fire({

@@ -1,7 +1,9 @@
+
 import { IAdmin } from "./Admin.type";
 import "./AdminListe.style.css";
 import { FaUserEdit } from "react-icons/fa";
 import { HiUserRemove } from "react-icons/hi";
+import Tooltip from "@mui/material/Tooltip";
 
 type Props = {
   list: IAdmin[];
@@ -51,32 +53,35 @@ const AdminList = (props: Props) => {
               <td>{admin.email}</td>
               <td>
                 <div className="d-flex justify-content-center">
-                  <div
-                    style={{
-                      marginRight: "10px",
-                      cursor: "pointer",
-                      fontSize: "x-large",
-                      color:"orange"
-                    }}
-                    onClick={() => {
-                      onUpdateAdmin(admin);
-                    }}
-                  >
-                    <FaUserEdit />
-                  </div>
-
-                  <div
-                    style={{
-                      cursor: "pointer",
-                      fontSize: "x-large",
-                      color: "red",
-                    }}
-                    onClick={() => {
-                      deletePost(admin.admin_id);
-                    }}
-                  >
-                    <HiUserRemove />
-                  </div>
+                  <Tooltip title="Modifier Admin" arrow>
+                    <div
+                      style={{
+                        marginRight: "10px",
+                        cursor: "pointer",
+                        fontSize: "x-large",
+                        color: "orange",
+                      }}
+                      onClick={() => {
+                        onUpdateAdmin(admin);
+                      }}
+                    >
+                      <FaUserEdit />
+                    </div>
+                  </Tooltip>
+                  <Tooltip title="Supprimer Admin" arrow>
+                    <div
+                      style={{
+                        cursor: "pointer",
+                        fontSize: "x-large",
+                        color: "red",
+                      }}
+                      onClick={() => {
+                        deletePost(admin.admin_id);
+                      }}
+                    >
+                      <HiUserRemove />
+                    </div>
+                  </Tooltip>
                 </div>
               </td>
             </tr>

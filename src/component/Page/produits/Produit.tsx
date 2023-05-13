@@ -4,6 +4,7 @@ import ProduitList from "./ProduitList";
 import "./HomeP.style.css";
 import ModalProduit from "./ModalProduit";
 import { SiAddthis } from "react-icons/si";
+ import Tooltip from "@mui/material/Tooltip";
 
 const Produit = () => {
   const [produitList, setProduitList] = useState([] as IProduit[]);
@@ -83,20 +84,23 @@ const Produit = () => {
 
       <section className="section-content">
         <>
-          <div
-            style={{
-              marginRight: "10px",
-              cursor: "pointer",
-              fontSize: "x-large",
-              color: "blue",
-            }}
-            onClick={() => {
-              handleAddProduit();
-            }}
-            className="add-produit-btn"
-          >
-            <SiAddthis />
-          </div>
+          <Tooltip title="Ajouter
+           Produit" arrow>
+            <div
+              style={{
+                marginRight: "10px",
+                cursor: "pointer",
+                fontSize: "x-large",
+                color: "blue",
+              }}
+              onClick={() => {
+                handleAddProduit();
+              }}
+              className="add-produit-btn"
+            >
+              <SiAddthis />
+            </div>
+          </Tooltip>
 
           <ProduitList
             list={produitList}

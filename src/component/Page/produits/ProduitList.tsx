@@ -3,6 +3,7 @@ import "./ProduitListe.style.css";
 import { IProduit } from "./Produit.type";
 import { MdDeleteForever } from "react-icons/md";
 import { BsFillPencilFill } from "react-icons/bs";
+import Tooltip from "@mui/material/Tooltip";
 
 type Props = {
   list: IProduit[];
@@ -67,31 +68,35 @@ const ProduitList = (props: Props) => {
               <td>{produit.description}</td>
               <td>
                 <div className="d-flex justify-content-center">
-                  <div
-                    style={{
-                      marginRight: "10px",
-                      cursor: "pointer",
-                      fontSize: "x-large",
-                      color: "orange",
-                    }}
-                    onClick={() => {
-                      onUpdatePrd(produit);
-                    }}
-                  >
-                    <BsFillPencilFill />
-                  </div>
-                  <div
-                    style={{
-                      cursor: "pointer",
-                      fontSize: "x-large",
-                      color: "red",
-                    }}
-                    onClick={() => {
-                      deletePost(produit.id_produit);
-                    }}
-                  >
-                    <MdDeleteForever />
-                  </div>
+                  <Tooltip title="Modifier Produit" arrow>
+                    <div
+                      style={{
+                        marginRight: "10px",
+                        cursor: "pointer",
+                        fontSize: "x-large",
+                        color: "orange",
+                      }}
+                      onClick={() => {
+                        onUpdatePrd(produit);
+                      }}
+                    >
+                      <BsFillPencilFill />
+                    </div>
+                  </Tooltip>
+                  <Tooltip title="Supprimer Produit" arrow>
+                    <div
+                      style={{
+                        cursor: "pointer",
+                        fontSize: "x-large",
+                        color: "red",
+                      }}
+                      onClick={() => {
+                        deletePost(produit.id_produit);
+                      }}
+                    >
+                      <MdDeleteForever />
+                    </div>
+                  </Tooltip>
                 </div>
               </td>
             </tr>

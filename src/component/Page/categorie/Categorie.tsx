@@ -16,8 +16,10 @@ const Categorie = () => {
   const [modal, setModal] = useState(false);
   const [updateData, setUpdateData] = useState(false);
 
-
-
+  const handleAddCategorie = () => {
+    setType("add");
+    setModal(!modal);
+  };
   function getCategorie() {
     fetch(`${process.env.REACT_APP_API_URL}/categorie`)
       .then(async (response) => {
@@ -46,12 +48,6 @@ const Categorie = () => {
     setImage(categorieSelected?.image);
     setIdSelected(categorieSelected?.id_categorie);
   }, [categorieSelected]);
-
-
-  const handleAddCategorie = () => {
-    setType("add");
-    setModal(!modal);
-  };
 
   return (
     <>

@@ -32,6 +32,7 @@ const Admin = () => {
   useEffect(() => {
     getAdmin();
   }, [updateData]);
+  
   useEffect(() => {
     setNom(adminSelected?.nom);
     setPrenom(adminSelected?.prenom);
