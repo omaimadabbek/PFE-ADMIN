@@ -43,9 +43,7 @@ function BarChart() {
   async function chiffreAffaires() {
     try {
       await fetch(
-        `${process.env.REACT_APP_API_URL}/caMensuel/${localStorage.getItem(
-          'user_id'
-        )}`
+        `${process.env.REACT_APP_API_URL}/caMensuel`
       )
         .then((response) => response.json())
         .then((data) => {

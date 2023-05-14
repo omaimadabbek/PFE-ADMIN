@@ -1,13 +1,4 @@
-import {
-
-  Box,
-
-  Typography,
-
-  styled,
-  Avatar,
-
-} from '@mui/material';
+import { Box, Typography, styled, Avatar } from '@mui/material';
 import TrendingUp from '@mui/icons-material/TrendingUp';
 
 import { useEffect, useState } from 'react';
@@ -26,15 +17,10 @@ function ChiffreAffaires() {
   const [Sum, SetSum] = useState('0');
   async function SumCommande() {
     try {
-      await fetch(
-        `${process.env.REACT_APP_API_URL}/Totalcmd/${localStorage.getItem(
-          'user_id'
-        )}`,
-        {
-          method: 'get',
-          headers: { 'Content-Type': 'application/json' }
-        }
-      )
+      await fetch(`${process.env.REACT_APP_API_URL}/Totalcmd`, {
+        method: 'get',
+        headers: { 'Content-Type': 'application/json' }
+      })
         .then((response) => response.json())
         .then((data) => {
           SetSum(data);
@@ -49,7 +35,10 @@ function ChiffreAffaires() {
 
   return (
     <div className="px-3 mt-5">
-      <h4 className="my-3" style={{color:"blue"}}> Chiffre d'Affaires </h4>
+      <h4 className="my-3" style={{ color: 'blue' }}>
+        {' '}
+        Chiffre d'Affaires{' '}
+      </h4>
       <div className="px-2">
         <Box>
           <Box

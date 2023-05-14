@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Avatar from '@mui/material/Avatar';
-
+import logo from '../../../images/user.webp';
 import {
   Card,
   CardHeader,
@@ -14,15 +14,10 @@ function TopAdmin() {
   const [admin, setAdmin] = useState([]);
   async function listeAdmins() {
     try {
-      await fetch(
-        `${process.env.REACT_APP_API_URL}/TopAdmin/${localStorage.getItem(
-          'user_id'
-        )}`,
-        {
-          method: 'get',
-          headers: { 'Content-Type': 'application/json' }
-        }
-      )
+      await fetch(`${process.env.REACT_APP_API_URL}/Topclient`, {
+        method: 'get',
+        headers: { 'Content-Type': 'application/json' }
+      })
         .then((response) => response.json())
         .then((data) => {
           setAdmin(data);
@@ -55,19 +50,19 @@ function TopAdmin() {
                   <CardHeader
                     avatar={
                       <Avatar aria-label="recipe">
-                        {elemnt.nomclient.slice(0, 1)}
-                        {elemnt.prenom.slice(0, 1)}
+                        {elemnt.nom_client.slice(0, 1)}
+                        {elemnt.prenom_client.slice(0, 1)}
                       </Avatar>
                     }
-                    title={elemnt.nomclient}
-                    subheader={elemnt.prenom}
+                    title={elemnt.nom_client}
+                    subheader={elemnt.prenom_client}
                   />
                   <CardMedia
                     sx={{
                       height: 0,
                       paddingTop: '110%' // 16:9
                     }}
-                    image={elemnt.img}
+                    image={logo}
                   />
                   <CardContent>
                     <h3>{elemnt.sum} € </h3>
