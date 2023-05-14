@@ -10,9 +10,9 @@ import {
   Typography,
   CardMedia
 } from '@mui/material';
-function TopAdmin() {
+function TopClient() {
   const [admin, setAdmin] = useState([]);
-  async function listeAdmins() {
+  async function listeClients() {
     try {
       await fetch(`${process.env.REACT_APP_API_URL}/Topclient`, {
         method: 'get',
@@ -28,13 +28,13 @@ function TopAdmin() {
   }
 
   useEffect(() => {
-    listeAdmins();
+    listeClients();
   }, []);
 
   return (
     <div className="px-3">
       <h4 className="my-3" style={{ color: 'blue' }}>
-        Top Admins
+        Top Clients
       </h4>
       <div className="row">
         {admin.map((elemnt: any, index: number) => {
@@ -77,4 +77,4 @@ function TopAdmin() {
   );
 }
 
-export default TopAdmin;
+export default TopClient;

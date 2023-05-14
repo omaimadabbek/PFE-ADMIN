@@ -60,7 +60,7 @@ function BarChart() {
   return (
     <div className="px-3 mt-5">
       <h4 className="my-3" style={{ color: 'blue' }}>
-        Diagramme des Ventes
+        Diagramme des Commandes
       </h4>
       <Bar options={options} data={data} />
     </div>
