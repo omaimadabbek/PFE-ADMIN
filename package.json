@@ -49,6 +49,7 @@
     "react-to-print": "^2.14.7",
     "reactstrap": "^9.1.1",
     "shortid": "^2.2.16",
+    "socket.io-client": "^4.6.1",
     "stylis": "4.1.1",
     "stylis-plugin-rtl": "2.1.1",
     "sweetalert2": "^11.4.21",

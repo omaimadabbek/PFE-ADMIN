@@ -36,6 +36,9 @@ const Historique = Loader(
 
 const Stats = Loader(lazy(() => import('src/content/dashboards/Stats')));
 
+
+
+
 const routes: RouteObject[] = [
   {
     path: 'dashboards',
