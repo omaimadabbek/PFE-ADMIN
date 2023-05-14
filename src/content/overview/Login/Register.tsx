@@ -3,10 +3,11 @@ import { Box, Button, Container, Grid, Typography, Card } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
-import logo from '../../../images/BK STOCKS(2).png';
-import Image from './Image';
+import logo from '../../../images/Restaurant_Dabbek.png';
+import { FormGroup, Input, Label } from 'reactstrap';
 import Swal from 'sweetalert2';
 import './style.css';
+
 const TypographyH1 = styled(Typography)(
   ({ theme }) => `
     font-size: ${theme.typography.pxToRem(50)};
@@ -42,29 +43,27 @@ const OverviewWrapper = styled(Box)(
 );
 
 function Register() {
-  const [imageAdmin, setImage] = React.useState('');
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [nom, setNom] = React.useState('');
   const [prenom, setPrenom] = React.useState('');
+  const [isAdmin, setIsAdmin] = React.useState('');
   const navigate = useNavigate();
-  let imageProfile = 'http://localhost:5000/profile.png';
-
   let re =
     /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  
-  function AddAdmin(image: string) {
+
+  function RegisterClient() {
     if (password && email && nom && prenom) {
       if (re.test(email)) {
-        fetch(`${process.env.REACT_APP_API_URL}/adduser`, {
-          method: 'post',
+        fetch(`${process.env.REACT_APP_API_URL}/Admin`, {
+          method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            mail: email,
-            mdp: password,
             nom: nom,
             prenom: prenom,
-            img: image
+            mot_de_passe: password,
+            email: email,
+            type: isAdmin
           })
         })
           .then((response) => response.json())
@@ -93,29 +92,7 @@ function Register() {
       });
     }
   }
-  async function RegisterAdmin() {
-    try {
-      if (imageAdmin) {
-        var formData = new FormData();
-        let img = imageAdmin;
-        for (const i of Object.keys(img)) {
-          formData.append('imgCollection', img[i as unknown as number]);
-        }
-        await fetch(`${process.env.REACT_APP_API_URL}/uploadImage`, {
-          body: formData,
-          method: 'POST'
-        })
-          .then((response) => response.json())
-          .then((data: any) => {
-            AddAdmin(data);
-          });
-      } else {
-        AddAdmin(imageProfile);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  }
+
   return (
     <OverviewWrapper>
       <Container maxWidth="lg">
@@ -185,15 +162,38 @@ function Register() {
                       }}
                     />
                   </div>
-                  <div className=" bd-highlight mt-3">
-                    <Image setImage={setImage} />
+
+                  <div className="d-flex justify-content-start">
+                    <div style={{ marginRight: '20px' }}>
+                      <Input
+                        name="radio1"
+                        type="radio"
+                        id="Admin"
+                        value="Admin"
+                        onChange={(e: any) => setIsAdmin('Admin')}
+                      />{' '}
+                      <Label check>Admin</Label>
+                    </div>
+                    <div>
+                      <div className="radio__clz">
+                        <Input
+                          name="radio1"
+                          type="radio"
+                          id="Cassier"
+                          value="Cassier"
+                          onChange={(e: any) => setIsAdmin('Cassier')}
+                        />{' '}
+                        <Label check>Cassier</Label>
+                      </div>
+                    </div>
                   </div>
+                  <div className=" bd-highlight mt-3"></div>
                   <div className=" bd-highlight ">
                     <Button
                       sx={{ my: 1, mt: 6 }}
                       size="large"
                       variant="contained"
-                      onClick={RegisterAdmin}
+                      onClick={RegisterClient}
                     >
                       S'inscrire
                     </Button>
@@ -237,9 +237,7 @@ function Register() {
                 </Grid>
               </Grid>
             </Grid>
-            <Box sx={{ pb: 2 }}>
-              © 2023-Application.
-            </Box>
+            <Box sx={{ pb: 2 }}>© 2023-Application</Box>
           </Container>
         </Card>
       </Container>

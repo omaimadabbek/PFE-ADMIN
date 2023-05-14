@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useRoutes } from 'react-router-dom';
 
-import router from 'src/router';
+
 
 import Overview from './content/overview/index';
 
@@ -10,6 +10,7 @@ import LocalizationProvider from '@mui/lab/LocalizationProvider';
 
 import { CssBaseline } from '@mui/material';
 import ThemeProvider from './theme/ThemeProvider';
+import router from './Router';
 
 function App() {
   const [user, setuser] = useState('');
