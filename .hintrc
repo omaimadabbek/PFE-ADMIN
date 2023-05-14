@@ -3,11 +3,10 @@
     "development"
   ],
   "hints": {
-    "no-inline-styles": "off",
-    "axe/forms": [
+    "axe/text-alternatives": [
       "default",
       {
-        "select-name": "off"
+        "image-alt": "off"
       }
     ]
   }
