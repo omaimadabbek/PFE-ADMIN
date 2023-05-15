@@ -52,7 +52,7 @@ function Register() {
   let re =
     /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-  function RegisterClient() {
+  function Register() {
     if (password && email && nom && prenom) {
       if (re.test(email)) {
         fetch(`${process.env.REACT_APP_API_URL}/Admin`, {
@@ -193,7 +193,7 @@ function Register() {
                       sx={{ my: 1, mt: 6 }}
                       size="large"
                       variant="contained"
-                      onClick={RegisterClient}
+                      onClick={Register}
                     >
                       S'inscrire
                     </Button>

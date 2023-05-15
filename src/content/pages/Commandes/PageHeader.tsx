@@ -19,11 +19,7 @@ function PageHeader() {
           les Commandes
         </Typography>
       </Grid>
-      {/* <Grid item>
-        <Button sx={{ mt: { xs: 2, md: 0 } }} variant="outlined">
-          Imprimer
-        </Button>
-      </Grid> */}
+   
     </Grid>
   );
 }
