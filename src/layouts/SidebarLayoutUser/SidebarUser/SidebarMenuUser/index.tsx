@@ -170,7 +170,7 @@ function SidebarMenu() {
           component="div"
           subheader={
             <ListSubheader component="div" disableSticky>
-              Cameras
+              Achats
             </ListSubheader>
           }
         >
@@ -181,146 +181,10 @@ function SidebarMenu() {
                   disableRipple
                   component={RouterLink}
                   onClick={closeSidebar}
-                  to="/managementUser/Cameras"
-                  startIcon={<CameraAltIcon />}
+                  to="/dashboards/commandes"
+                  startIcon={<FaIcons.FaCartPlus />}
                 >
-                  Cameras
-                </Button>
-              </ListItem>
-              <ListItem
-                component="div"
-                onClick={() => {
-                  setMenu(!Menu);
-                }}
-              >
-                <div className="d-flex flex-column bd-highlight mb-3">
-                  <div className="p-2 bd-highlight">
-                    <div
-                      className="d-flex justify-content-between d-flex align-items-center"
-                      style={{ width: '188%' }}
-                    >
-                      <>
-                        <Button
-                          disableRipple
-                          component={RouterLink}
-                          onClick={closeSidebar}
-                          to="/managementUser/profile/settings"
-                          startIcon={<CameraAltIcon />}
-                        >
-                          Views
-                        </Button>
-                      </>
-                      <>
-                        {Menu ? (
-                          <FaIcons.FaAngleUp className="d-flex justify-content-end" />
-                        ) : (
-                          <FaIcons.FaAngleDown className="d-flex justify-content-end" />
-                        )}
-                      </>
-                    </div>
-                  </div>
-                  <div className="p-2 bd-highlight">
-                    {Menu && (
-                      <List className=" d-flex flex-column bd-highlight px-0 ">
-                        <div className="d-flex flex-column">
-                          <div className="p-2">
-                            <Button
-                              disableRipple
-                              component={RouterLink}
-                              onClick={closeSidebar}
-                              to="/managementUser/View2"
-                              startIcon={<CameraAltIcon />}
-                            >
-                              2
-                            </Button>
-                          </div>
-                          <div className="p-2">
-                            {' '}
-                            <Button
-                              disableRipple
-                              component={RouterLink}
-                              onClick={closeSidebar}
-                              to="/managementUser/View4"
-                              startIcon={<CameraAltIcon />}
-                            >
-                              4
-                            </Button>
-                          </div>
-                          <div className="p-2">
-                            {' '}
-                            <Button
-                              disableRipple
-                              component={RouterLink}
-                              onClick={closeSidebar}
-                              to="/managementUser/View6"
-                              startIcon={<CameraAltIcon />}
-                            >
-                              6
-                            </Button>
-                          </div>
-                        </div>
-                      </List>
-                    )}
-                  </div>
-                </div>
-              </ListItem>
-              <ListItem component="div">
-                <Button
-                  disableRipple
-                  component={RouterLink}
-                  onClick={closeSidebar}
-                  to="/managementUser/Personalise"
-                  startIcon={<CameraAltIcon />}
-                >
-                  Personalisé
-                </Button>
-              </ListItem>
-            </List>
-          </SubMenuWrapper>
-        </List>
-        <List
-          component="div"
-          subheader={
-            <ListSubheader component="div" disableSticky>
-              Emails
-            </ListSubheader>
-          }
-        >
-          <SubMenuWrapper>
-            <List component="div">
-              <ListItem component="div">
-                <Button
-                  disableRipple
-                  component={RouterLink}
-                  onClick={closeSidebar}
-                  to="/managementUser/TransactionsUser"
-                  startIcon={<NotificationsIcon />}
-                >
-                  Liste des emails
-                </Button>
-              </ListItem>
-            </List>
-          </SubMenuWrapper>
-        </List>
-        <List
-          component="div"
-          subheader={
-            <ListSubheader component="div" disableSticky>
-              Profile
-            </ListSubheader>
-          }
-        >
-          <SubMenuWrapper>
-            <List component="div">
-              <ListItem component="div">
-                <Button
-                  disableRipple
-                  component={RouterLink}
-                  onClick={closeSidebar}
-                  to="/managementUser/profile/details"
-                  startIcon={<AccountCircleTwoToneIcon />}
-                >
-                  Profile
+                  Commandes
                 </Button>
               </ListItem>
             </List>

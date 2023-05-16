@@ -7,6 +7,7 @@ import SidebarLayout from 'src/layouts/SidebarLayout';
 import SuspenseLoader from 'src/components/SuspenseLoader';
 import Categories from './content/pages/Categories';
 import Commandes from 'src/content/pages/Commandes/index';
+import SidebarLayoutUser from './layouts/SidebarLayoutUser';
 
 const Loader = (Component: any) => (props: any) =>
   (
@@ -67,6 +68,17 @@ const routes: RouteObject[] = [
       },
       {
         path: 'commandes',
+        element: <Commandes />
+      }
+    ]
+  },
+  ,
+  {
+    path: 'dashboardsCaissier',
+    element: <SidebarLayoutUser />,
+    children: [
+     {
+        path: 'commandesCassier',
         element: <Commandes />
       }
     ]

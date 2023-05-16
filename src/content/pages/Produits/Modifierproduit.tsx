@@ -4,6 +4,7 @@ import { FormGroup, Input, Label } from 'reactstrap';
 import Image from '../../overview/Login/Image';
 import { Button } from '@mui/material';
 import Swal from 'sweetalert2';
+import ReactSwitch from 'react-switch';
 
 type Modifierproduit = {
   selectedProduit: any;
@@ -20,8 +21,12 @@ export default function Modifierproduit({
   setIsUpdate
 }: Modifierproduit) {
   const [Produit, setProduit] = useState(selectedProduit);
-  console.log('🚀 ~ file: Modifierproduit.tsx:23 ~ Produit:', Produit);
+
   const [imageproduit, setImage] = useState();
+
+  const [isChecked, setIsChecked] = useState(
+    selectedProduit?.repture_de_stock === 'on' ? true : false
+  );
   const handleClose = () => setShow(false);
 
   async function EditProduit() {
@@ -70,8 +75,16 @@ export default function Modifierproduit({
     }
   }
 
+  const handleChange = (checked) => {
+    setIsChecked(checked);
+    setProduit({
+      ...Produit,
+      repture_de_stock: checked ? 'on' : 'off'
+    });
+  };
   React.useEffect(() => {
     setProduit(selectedProduit);
+    setIsChecked(selectedProduit?.repture_de_stock === 'on' ? true : false);
     setImage(selectedProduit?.image);
   }, [selectedProduit]);
 
@@ -158,8 +171,9 @@ export default function Modifierproduit({
             </FormGroup>
           </div>
 
-          <div className="bd-highlight">
-            <FormGroup>
+          <div className="d-flex bd-highlight d-flex align-items-center">
+            <div className="p-2 flex-grow-1 bd-highlight">
+              {' '}
               <Label
                 className="box1"
                 for="exampledescription"
@@ -167,19 +181,22 @@ export default function Modifierproduit({
               >
                 Repture De Stock{' '}
               </Label>
-              <Input
-                type="switch"
-                role="switch"
-                value={Produit?.repture_de_stock === 'on' ? '1' : '0'}
-                onChange={(e: any) => {
-                  setProduit({
-                    ...Produit,
-                    repture_de_stock: e.target.value
-                  });
-                }}
-                style={{ fontSize: '25px', marginLeft: '10px' }}
+            </div>
+            <div className="p-2 bd-highlight">
+              <ReactSwitch
+                checked={isChecked}
+                onChange={handleChange}
+                activeBoxShadow="0px 0px 1px 10px #000000"
+                boxShadow="0px 1px 5px 0px #000000"
+                handleDiameter={26}
+                offColor="#f7b4b8"
+                offHandleColor="#E30613"
+                onColor="#c2eddd"
+                onHandleColor="#34C38F"
+                width={55}
+                height={20}
               />
-            </FormGroup>
+            </div>
           </div>
 
           <div className=" bd-highlight mt-3">

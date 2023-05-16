@@ -97,13 +97,21 @@ const TableCommande: FC<CommandeListProps> = ({
     limit
   );
 
-  async function onUpdateCmd(id_commandes: number, etat_commande: string) {
+  async function onUpdateCmd(
+    id_commandes: number,
+    etat_commande: string,
+    idClient: string
+  ) {
     fetch(`${process.env.REACT_APP_API_URL}/commandes/${id_commandes}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ etat_commande })
+      body: JSON.stringify({ etat_commande, idClient })
     })
-      .then((response) => response.json())
+      .then((response) => {
+        console.log('bb', response);
+
+        response.json();
+      })
 
       .catch((error) => {
         console.error('There was an error!', error);
@@ -243,21 +251,28 @@ const TableCommande: FC<CommandeListProps> = ({
                               <Button
                                 color="primary"
                                 onClick={() => {
-                                  onUpdateCmd(cryptoOrder.id_commandes, '1');
+                                  onUpdateCmd(
+                                    cryptoOrder.id_commandes,
+                                    '1',
+                                    cryptoOrder.id_client
+                                  );
                                 }}
                               >
-                                Accepté
+                                Accepter
                               </Button>
                             </div>
                             <div style={{ marginRight: '10px' }}>
                               <Button
                                 color="primary"
                                 onClick={() => {
-                                  onUpdateCmd(cryptoOrder.id_commandes, '2');
+                                  onUpdateCmd(
+                                    cryptoOrder.id_commandes,
+                                    '2',
+                                    cryptoOrder.id_client
+                                  );
                                 }}
                               >
-                                {' '}
-                                Refusé
+                                Refuser
                               </Button>
                             </div>
                           </div>

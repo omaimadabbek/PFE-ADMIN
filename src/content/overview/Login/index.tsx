@@ -53,8 +53,12 @@ function Login() {
             localStorage.setItem('nom', data[0].nom);
 
             //***lire les données de localStorage*/
+            if (data[0].type === 'Cassier') {
+              navigate('dashboardsCaissier/commandesCassier');
+            } else {
+              navigate('dashboards/Admin');
+            }
 
-            navigate('dashboards/Admin');
             window.location.reload();
           } else {
             //***pass ou email incorrect donc affiche swalalerte d'une erreur*/
